@@ -1,0 +1,140 @@
+$black: #000;
+$grey1: #5f5f5f;
+$grey2: #c9c9c9;
+$grey3: #fafafa;
+
+$focues: #afafaf;
+
+$borderWidth: 1px;
+
+$space: 4px;
+$space2: 8px;
+$space3: 12px;
+$space4: 16px;
+$space5: 20px;
+$space6: 24px;
+$space7: 28px;
+$space8: 32px;
+
+$fontSize: 14px;
+
+.autocomplete {
+  &--focused {
+    .autocomplete {
+      &__dropdown {
+        visibility: visible;
+      }
+
+      &__input {
+        border-color: $grey1;
+      }
+    }
+  }
+  &__container {
+    width: 100%;
+    max-width: 240px;
+    position: relative;
+  }
+  &__input {
+    width: 100%;
+    outline: none;
+    border: $borderWidth solid $grey2;
+    height: 48px;
+    border-radius: $space;
+    box-shadow: none;
+    padding: $space2 $space4;
+  }
+  &__dropdown {
+    background-color: $grey3;
+    width: 100%;
+    border-radius: 0 0 $space $space;
+    overflow: hidden;
+    position: absolute;
+    top: 45px;
+    border-width: 0 $borderWidth $borderWidth $borderWidth;
+    border-style: solid;
+    border-color: $grey1;
+    visibility: hidden;
+  }
+
+  &__listItemContainer {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+
+    max-height: 200px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    transition: all linear 0.3s;
+    &--loading {
+      min-height: 60px;
+    }
+  }
+
+  &__listItem {
+    font-size: $fontSize;
+    color: $black;
+    padding: $space2 $space4;
+    cursor: pointer;
+    text-align: left;
+    transition: all linear 0.3s;
+    display: block;
+    &:hover,
+    &--focused {
+      background-color: $focues;
+    }
+  }
+
+  &__no-result {
+    font-size: $fontSize;
+    color: $black;
+    padding: $space2 $space4;
+  }
+
+  &__loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    padding: $space4 0;
+  }
+  &__loader-inner {
+    position: relative;
+    width: $space4;
+    height: $space4;
+    animation-name: Loader;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+
+    &::after,
+    &::before {
+      content: "";
+      width: $space;
+      height: $space;
+
+      border-radius: 50%;
+      position: absolute;
+      display: block;
+      top: calc(50% - $space);
+    }
+    &::after {
+      background-color: $grey1;
+      left: 0;
+    }
+    &::before {
+      background-color: $grey2;
+      right: 0;
+    }
+  }
+}
+
+@keyframes Loader {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
